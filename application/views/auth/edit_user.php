@@ -62,9 +62,15 @@
                     <?php echo lang('edit_user_groups_heading', 'groups', 'class="col-sm-2 control-label"');?>
                     <div class="col-sm-8">
                         <?php foreach ($groups as $group):?>
-                                <input type="checkbox" name="groups[]" value="<?php echo $group['id'];?>" <?php echo (in_array($group, $currentGroups)) ? 'checked="checked"' : null; ?>>
-                                <?php echo htmlspecialchars($group['name'],ENT_QUOTES,'UTF-8');?>
-                                <br>
+                            <!-- <input type="checklist" name="groups[]" value="<?php echo $group['id'];?>" <?php echo (in_array($group, $currentGroups)) ? 'checked="checked"' : null; ?>>
+                            <?php echo htmlspecialchars($group['name'],ENT_QUOTES,'UTF-8');?>
+                            <br> -->
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="groups" value="<?php echo $group['id'];?>" <?php echo (in_array($group, $currentGroups)) ? 'checked="checked"' : null; ?>>
+                                    <?php echo htmlspecialchars($group['name'],ENT_QUOTES,'UTF-8');?>
+                                </label>
+                            </div>
                         <?php endforeach?>
                     </div>
                 </div>

@@ -657,7 +657,7 @@ class Auth extends CI_Controller
 					// Update the groups user belongs to
 					$this->ion_auth->remove_from_group('', $id);
 
-					$groupData = $this->input->post('groups');
+					$groupData = array($this->input->post('groups'));
 					if (isset($groupData) && !empty($groupData))
 					{
 						foreach ($groupData as $grp)

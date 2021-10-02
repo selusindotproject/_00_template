@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Sep 29, 2021 at 11:57 AM
+-- Generation Time: Oct 02, 2021 at 07:32 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 7.4.15
 
@@ -75,8 +75,7 @@ CREATE TABLE `t85_users` (
 --
 
 INSERT INTO `t85_users` (`id`, `ip_address`, `username`, `password`, `email`, `activation_selector`, `activation_code`, `forgotten_password_selector`, `forgotten_password_code`, `forgotten_password_time`, `remember_selector`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`) VALUES
-(1, '127.0.0.1', 'administrator', '$2y$10$luNkCgNMZ8YjUHKPTtcKd.6wqJKBaRNFaq9Yac/FueCViXJ5d6Vu6', 'admin@admin.com', NULL, '', NULL, NULL, NULL, NULL, NULL, 1268889823, 1632908987, 1, 'Admin', 'istrator', 'ADMIN', '082266778878'),
-(2, '::1', NULL, '$2y$10$Gs6SdwqoW5CxvTd3sfpJXep0PXRHJN54hkdUK9XLaP1SHXY/wET9G', 'vcsit@vistacontainer.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1632902312, 1632908972, 1, 'Dodo', 'Ananto', 'VCS', '03199241533');
+(1, '127.0.0.1', 'administrator', '$2y$10$et9jBuKShZlXhUhQ.gswI.cm2WLpS4mSyJ7uGlSVlQi2r387VY7CK', 'admin@admin.com', NULL, '', NULL, NULL, NULL, NULL, NULL, 1268889823, 1633177471, 1, 'Admin', 'istrator', 'ADMIN', '0');
 
 -- --------------------------------------------------------
 
@@ -96,12 +95,7 @@ CREATE TABLE `t86_groups` (
 
 INSERT INTO `t86_groups` (`id`, `name`, `description`) VALUES
 (1, 'admin', 'Administrator'),
-(2, 'members', 'General User'),
-(3, 'dom', 'Domestik'),
-(4, 'eks', 'Ekspor'),
-(5, 'mar', 'Marketing'),
-(6, 'doc', 'Document Control'),
-(7, 'it', 'IT');
+(2, 'members', 'General User');
 
 -- --------------------------------------------------------
 
@@ -120,10 +114,7 @@ CREATE TABLE `t87_users_groups` (
 --
 
 INSERT INTO `t87_users_groups` (`id`, `user_id`, `group_id`) VALUES
-(11, 1, 1),
-(12, 1, 2),
-(23, 2, 2),
-(24, 2, 7);
+(1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -138,12 +129,49 @@ CREATE TABLE `t88_login_attempts` (
   `time` int(11) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `t88_login_attempts`
+-- Table structure for table `t89_menu`
 --
 
-INSERT INTO `t88_login_attempts` (`id`, `ip_address`, `login`, `time`) VALUES
-(2, '::1', 'admin@admin.co.id', 1632842280);
+CREATE TABLE `t89_menu` (
+  `id` int(11) NOT NULL,
+  `kode` varchar(25) NOT NULL,
+  `nama` varchar(25) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `t89_menu`
+--
+
+INSERT INTO `t89_menu` (`id`, `kode`, `nama`) VALUES
+(1, 'groups', '01 - Master - Groups'),
+(2, 'menu', '02 - Master - Menu'),
+(3, 'groups_menu', '#');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `t90_groups_menu`
+--
+
+CREATE TABLE `t90_groups_menu` (
+  `id` int(11) NOT NULL,
+  `idgroups` mediumint(8) UNSIGNED NOT NULL,
+  `idmenu` int(11) NOT NULL,
+  `rights` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `t90_groups_menu`
+--
+
+INSERT INTO `t90_groups_menu` (`id`, `idgroups`, `idmenu`, `rights`) VALUES
+(1, 1, 1, 3),
+(2, 1, 2, 7),
+(3, 2, 1, 0),
+(4, 2, 2, 0);
 
 --
 -- Indexes for dumped tables
@@ -187,6 +215,21 @@ ALTER TABLE `t88_login_attempts`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `t89_menu`
+--
+ALTER TABLE `t89_menu`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `t90_groups_menu`
+--
+ALTER TABLE `t90_groups_menu`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `idgroups_idmenu` (`idgroups`,`idmenu`),
+  ADD KEY `idgroups` (`idgroups`),
+  ADD KEY `idmenu` (`idmenu`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -200,25 +243,37 @@ ALTER TABLE `t00_package`
 -- AUTO_INCREMENT for table `t85_users`
 --
 ALTER TABLE `t85_users`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `t86_groups`
 --
 ALTER TABLE `t86_groups`
-  MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `t87_users_groups`
 --
 ALTER TABLE `t87_users_groups`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `t88_login_attempts`
 --
 ALTER TABLE `t88_login_attempts`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `t89_menu`
+--
+ALTER TABLE `t89_menu`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `t90_groups_menu`
+--
+ALTER TABLE `t90_groups_menu`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
@@ -230,6 +285,13 @@ ALTER TABLE `t88_login_attempts`
 ALTER TABLE `t87_users_groups`
   ADD CONSTRAINT `fk_users_groups_groups1` FOREIGN KEY (`group_id`) REFERENCES `t86_groups` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_users_groups_users1` FOREIGN KEY (`user_id`) REFERENCES `t85_users` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `t90_groups_menu`
+--
+ALTER TABLE `t90_groups_menu`
+  ADD CONSTRAINT `t90_groups_menu_ibfk_1` FOREIGN KEY (`idgroups`) REFERENCES `t86_groups` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `t90_groups_menu_ibfk_2` FOREIGN KEY (`idmenu`) REFERENCES `t89_menu` (`id`) ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

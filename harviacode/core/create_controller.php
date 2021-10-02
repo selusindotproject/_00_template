@@ -15,7 +15,7 @@ class " . $c . " extends CI_Controller
 
 if ($jenis_tabel <> 'reguler_table') {
     $string .= "        \n\t\t\$this->load->library('datatables');";
-    $string .= "        \n\t\t\$this->load->model('t89_users_menus/T89_users_menus_model');";
+    // $string .= "        \n\t\t\$this->load->model('t89_users_menus/T89_users_menus_model');";
 }
 
 $string .= "
@@ -59,7 +59,7 @@ $string .= "\n\n    public function index()
 $string .="\n\n    public function index()
     {
         // \$this->load->view('$c_url/$v_list');
-        \$data['hakAkses'] = \$this->T89_users_menus_model->getHakAkses(substr(\$this->uri->segment(1), 4));
+        \$data['hakAkses'] = getHakAkses(substr(\$this->uri->segment(1), 4));
         \$this->session->set_userdata('hakAkses'.substr(\$this->uri->segment(1), 4), \$data['hakAkses']);
         \$data['_view'] = '$c_url/$v_list';
         \$data['_caption'] = '".ucfirst(substr($c_url, 4))."';

@@ -5,6 +5,115 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 
 /**
+ * update hak akses
+ */
+function updateHakAkses($idMenu)
+{
+
+    // set variable $this
+    $ci =& get_instance();
+
+    /**
+     * collect data groups
+     */
+    $q = "select * from " . TABLE_GROUPS;
+    $dataGroups = $ci->db->query($q)->result();
+
+    // simpan data ke tabel t90_groups_menus (groups hak akses)
+    foreach($dataGroups as $row) {
+        $data = array(
+            'idgroups' => $row->id,
+            'idmenu' => $idMenu,
+            'rights' => 7,
+        );
+        $ci->db->insert(TABLE_HAKAKSES, $data);
+    }
+}
+
+
+
+/**
+ * create hak akses for new groups
+ */
+function createHakAkses($idgroups)
+{
+
+    // set variable $this
+    $ci =& get_instance();
+
+    /**
+     * collect data menus
+     */
+    $q = "select * from " . TABLE_MENU . " where nama <> '#'";
+    $dataMenu = $ci->db->query($q)->result();
+
+    foreach($dataMenu as $row) {
+        $data = array(
+            'idgroups' => $idgroups,
+            'idmenu' => $row->id,
+            'rights' => 0,
+        );
+        $ci->db->insert(TABLE_HAKAKSES, $data);
+    }
+}
+
+
+
+
+/**
+ * get hak akses berdasarkan idusers = user_id dan idmenus
+ */
+function getHakAkses($modulName)
+{
+    // set variable $this
+    $ci =& get_instance();
+
+    // ambil nilai id menu dari tabel master menu
+    $ci->db->where('kode', $modulName);
+    $idMenu = $ci->db->get('t89_menu')->row()->id;
+
+    // ambil nilai id groups sesuai user yang login
+    $idGroups = $ci->ion_auth->get_users_groups()->row()->id;
+
+    // ambil nilai hak akses
+    $ci->db->where('idgroups', $idGroups);
+    $ci->db->where('idmenu', $idMenu);
+    $row = $ci->db->get('t90_groups_menu')->row();
+    $hakAkses = array('tambah' => false, 'ubah' => false, 'hapus' => false);
+
+    // tentukan hak akses
+    if ($row) {
+        switch ($row->rights) {
+            case 1:
+                $hakAkses = array('tambah' => true, 'ubah' => false, 'hapus' => false);
+                break;
+            case 2:
+                $hakAkses = array('tambah' => false, 'ubah' => true, 'hapus' => false);
+                break;
+            case 3:
+                $hakAkses = array('tambah' => true, 'ubah' => true, 'hapus' => false);
+                break;
+            case 4:
+                $hakAkses = array('tambah' => false, 'ubah' => false, 'hapus' => true);
+                break;
+            case 5:
+                $hakAkses = array('tambah' => true, 'ubah' => false, 'hapus' => true);
+                break;
+            case 6:
+                $hakAkses = array('tambah' => false, 'ubah' => true, 'hapus' => true);
+                break;
+            case 7:
+                $hakAkses = array('tambah' => true, 'ubah' => true, 'hapus' => true);
+                break;
+        }
+    }
+    return $hakAkses;
+}
+
+
+
+
+/**
  * buat saldo awal baru berdasarkan periode_id baru
  */
 function buatSaldoawal($periode_id)

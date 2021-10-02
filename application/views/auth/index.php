@@ -43,7 +43,8 @@
 
   <div class="box-footer">
 	<!-- <h3 class="box-title"><?php echo lang('index_subheading') ?></h3> -->
-	<p><?php echo anchor('auth/create_user', lang('index_create_user_link'))?> | <?php echo anchor('auth/create_group', lang('index_create_group_link'))?></p>
+	<!-- <p><?php echo anchor('auth/create_user', lang('index_create_user_link'))?> | <?php echo anchor('auth/create_group', lang('index_create_group_link'))?></p> -->
+    <p><?php echo anchor('auth/create_user', lang('index_create_user_link'))?></p>
   </div>
   <!-- /.box-footer -->
 </div>

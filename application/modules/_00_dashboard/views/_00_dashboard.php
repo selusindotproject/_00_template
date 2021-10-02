@@ -27,6 +27,9 @@
   <link rel="stylesheet" href="<?php echo base_url() ?>assets/adminlte/bower_components/bootstrap-daterangepicker/daterangepicker.css">
   <!-- bootstrap wysihtml5 - text editor -->
   <link rel="stylesheet" href="<?php echo base_url() ?>assets/adminlte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="<?php echo base_url() ?>assets/adminlte/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+  <link rel="stylesheet" href="<?php echo base_url() ?>assets/adminlte/bower_components/datatables.net/css/buttons.dataTables.min.css">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -40,6 +43,8 @@
 
   <!-- jQuery 3 -->
   <script src="<?php echo base_url() ?>assets/adminlte/bower_components/jquery/dist/jquery.min.js"></script>
+  <!-- jQuery UI 1.11.4 -->
+  <!-- <script src="<?php echo base_url() ?>assets/adminlte/bower_components/jquery-ui/jquery-ui.min.js"></script> -->
 </head>
 <body class="hold-transition skin-purple-light sidebar-mini">
 <div class="wrapper">
@@ -88,9 +93,6 @@
 </script>
 <!-- Bootstrap 3.3.7 -->
 <script src="<?php echo base_url() ?>assets/adminlte/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<!-- DataTables -->
-<script src="<?php echo base_url() ?>assets/adminlte/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
-<script src="<?php echo base_url() ?>assets/adminlte/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
 <!-- Morris.js charts -->
 <script src="<?php echo base_url() ?>assets/adminlte/bower_components/raphael/raphael.min.js"></script>
 <script src="<?php echo base_url() ?>assets/adminlte/bower_components/morris.js/morris.min.js"></script>
@@ -118,5 +120,14 @@
 <script src="<?php echo base_url() ?>assets/adminlte/dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo base_url() ?>assets/adminlte/dist/js/demo.js"></script>
+<!-- PDFMake -->
+<!-- <script src="<?php echo base_url() ?>assets/pdfmake/pdfmake.min.js"></script> -->
+<!-- <script src="<?php echo base_url() ?>assets/pdfmake/vfs_fonts.js"></script> -->
+<!-- DataTables -->
+<script src="<?php echo base_url() ?>assets/adminlte/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="<?php echo base_url() ?>assets/adminlte/bower_components/datatables.net/js/dataTables.buttons.min.js"></script>
+<script src="<?php echo base_url() ?>assets/adminlte/bower_components/datatables.net/js/buttons.html5.min.js"></script>
+<script src="<?php echo base_url() ?>assets/adminlte/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<script src="<?php echo base_url() ?>assets/adminlte/bower_components/datatables.net-bs/js/buttons.bootstrap.min.js"></script>
 </body>
 </html>
