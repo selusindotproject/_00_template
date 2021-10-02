@@ -60,7 +60,7 @@
 			define('DBPREFIX', 'db');
 			break;
 
-		case "tamu.selarassolusindo.com":
+		case "template.selarassolusindo.com":
 			$env = "production";
 			define('DBPREFIX', 'u736643050');
 			break;
